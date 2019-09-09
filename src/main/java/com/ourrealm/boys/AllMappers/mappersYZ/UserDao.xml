@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ourrealm.boys.YZ.Daos.UserDao">
+
+    <resultMap id="User" type="com.ourrealm.boys.YZ.Models.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_sex" jdbcType="CHAR" property="userSex"/>
+        <result column="user_age" jdbcType="INTEGER" property="userAge"/>
+        <result column="user_adress" jdbcType="VARCHAR" property="userAdress"/>
+        <result column="user_login_name" jdbcType="VARCHAR" property="userLoginName"/>
+        <result column="user_login_ps_word" jdbcType="VARCHAR" property="userLoginPsWord"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_logo" jdbcType="VARCHAR" property="userLogo"/>
+        <result column="user_school" jdbcType="VARCHAR" property="userSchool"/>
+        <result column="user_city" jdbcType="VARCHAR" property="userCity"/>
+        <result column="user_province" jdbcType="VARCHAR" property="userProvince"/>
+        <result column="user_weixin" jdbcType="VARCHAR" property="userWeixin"/>
+    </resultMap>
+
+	<select id="getUserInfoById" parameterType="java.lang.Integer" resultMap="User">
+		select * from user where id=#{id}
+	</select>
+
+    <insert id="insert" parameterType="com.ourrealm.boys.YZ.Models.User">
+		INSERT INTO user(
+			id,
+			user_name,
+			user_sex,
+			user_age,
+			user_adress,
+			user_login_name,
+			user_login_ps_word,
+			user_phone,
+			user_email,
+			user_logo,
+			user_school,
+			user_city,
+			user_province,
+			user_weixin
+		) VALUES (
+			#{id},
+			#{userName},
+			#{userSex},
+			#{userAge},
+			#{userAdress},
+			#{userLoginName},
+			#{userLoginPsWord},
+			#{userPhone},
+			#{userEmail},
+			#{userLogo},
+			#{userSchool},
+			#{userCity},
+			#{userProvince},
+			#{userWeixin}
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE user SET
+			user_name = #{userName},
+			user_sex = #{userSex},
+			user_age = #{userAge},
+			user_adress = #{userAdress},
+			user_login_name = #{userLoginName},
+			user_login_ps_word = #{userLoginPsWord},
+			user_phone = #{userPhone},
+			user_email = #{userEmail},
+			user_logo = #{userLogo},
+			user_school = #{userSchool},
+			user_city = #{userCity},
+			user_province = #{userProvince},
+			user_weixin = #{userWeixin}
+		WHERE id = #{id}
+	</update>
+
+    <update id="delete">
+		DELETE FROM user
+		WHERE id = #{id}
+	</update>
+
+</mapper>

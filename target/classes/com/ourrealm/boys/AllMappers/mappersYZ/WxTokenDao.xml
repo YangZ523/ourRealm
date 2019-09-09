@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ourrealm.boys.YZ.Daos.WxTokenDao">
+
+    <resultMap id="WxToken" type="com.ourrealm.boys.YZ.Models.WxToken">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="wx_appId" jdbcType="VARCHAR" property="appId"/>
+        <result column="wx_token" jdbcType="VARCHAR" property="token"/>
+        <result column="wx_Type" jdbcType="VARCHAR" property="wxType"/>
+        <result column="wx_expire" jdbcType="DATE" property="expire"/>
+    </resultMap>
+
+	<select id="findAll"  resultMap="WxToken">
+		select * from wx_token
+	</select>
+
+    <select id="getWxTokenByAppId" resultMap="WxToken">
+        select * from wx_token where wx_appid=#{appId} and wx_type=#{type}
+    </select>
+
+    <insert id="insert" parameterType="com.ourrealm.boys.YZ.Models.WxToken">
+		INSERT INTO wx_token(
+			id,
+			wx_appId,
+			wx_token,
+			wx_Type,
+			wx_expire
+		) VALUES (
+			#{id},
+			#{appId},
+			#{token},
+			#{wxType},
+			#{expire}
+		)
+	</insert>
+	<update id="update" parameterType="com.ourrealm.boys.YZ.Models.WxToken">
+		UPDATE wx_token SET
+		wx_appId=#{appId},
+		wx_token=#{token},
+		wx_Type=#{wxType},
+		wx_expire=#{expire}
+		WHERE id = #{id}
+	</update>
+
+</mapper>

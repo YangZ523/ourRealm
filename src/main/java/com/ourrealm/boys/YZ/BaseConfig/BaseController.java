@@ -41,7 +41,7 @@ public class BaseController extends AppController {
      */
     @RequestMapping("getUserInfo")
     public @ResponseBody User getUserInfo(){
-        return userService.getUserInfoById(2);
+        return userService.getUserInfoById(1);
     }
 
     /**

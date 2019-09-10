@@ -2,13 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>首页</title>
 </head>
 <body>
 
-<p th:text="${msg}">
+<!--//标准变量表达式-->
+<p th:text="${msg}">消息msg展示</p>
+<span th:text="${user.userName}">某某姓名</span>
+<span th:text="${user.userLoginName}">登录昵称</span>
 
-</p>
+<!--//选择变量表达式,th:object用来绑定对象，然后*代表选择的对象user,然后再是标准变量表达式，其实也可以用标准变量表达式来进行展示-->
+<div th:object="${user}">
+    <p>nick:<span th:text="*{userName}"></span></p>
+    <!--标准变量和选择变量可以混着用-->
+    <p>LoginName:<span th:text="${user.userLoginName}">登录昵称</span></p>
+</div>
+<div>
+    <!--但是没有选择object对象，直接用*效果和$是一样的-->
+    <p>nick:<span th:text="*{user.userName}"></span></p>
+</div>
+
+        <!--url表达式-->
+<!--绝对url的编写，也是借口的调用方式-->
+<a href="error.html" th:href="@{'http://localhost:8080/ourRealm/YzBase/toThymeleafIndex/'+${user.id}}">错误页面跳转</a>
+<!--不想字符串拼接可使用|进行包揽，也可以restFul和springmvc混合使用-->
+<a href="error.html" th:href="@{|http://localhost:8080/ourRealm/YzBase/toThymeleafIndex/${user.id}?phone=${user.userPhone}|}">错误页面跳转2</a>
+
+<!--相对的url的编写，直接访问项目本地的接口-->
+<!--此处是个错误的路径，访问不到接口，但是可以跳转到error.html页面，因为href的属性-->
+<a href="error.html" th:href="@{'YzBase/toThymeleafIndex/'+${user.id}}">错误页面跳转3</a>
+<!--两个的区别是下面的路径多了一个斜杠，会把项目的绝对路径拼接进去，看页面源码就明白了了-->
+<a href="error.html" th:href="@{|/YzBase/toThymeleafIndex/${user.id}|}">错误页面跳转4</a>
 
 </body>
 </html>

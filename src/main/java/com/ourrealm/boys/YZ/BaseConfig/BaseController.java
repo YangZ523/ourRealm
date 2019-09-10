@@ -106,16 +106,27 @@ public class BaseController extends AppController {
 
     /**
      * 跳转thymeleaf模板页面
+     * thymeleaf模板使用学习
      * @param model
      * @return
      */
     @RequestMapping("/toThymeleafIndex")
     public String toThymeleafIndex(Model model){
+        User user=userService.getUserInfoById(1);
         model.addAttribute("msg","springBoot集成thymeleaf");
+        model.addAttribute("user",user);
         return "index";
     }
 
+    @RequestMapping("/toThymeleafIndex/{id}")
+    public String toThymeleafIndexId(@PathVariable("id") String id,String phone,Model model){
+        model.addAttribute("id",id);
+        model.addAttribute("phone",phone);
+        return "error";
+    }
+
     /**
+     * RestFul格式接口
      * 注意的是，参数id也是请求路径的之一，缺失则无法请求到此接口，所以，不需要判断参数是否为空，只有可能是错误
      * 且且且，requestMapping中的参数的为多个时，顺序不能打乱，不然路径就不对了，也不能重载，对于同样的参数的请求路径来说
      * @param id

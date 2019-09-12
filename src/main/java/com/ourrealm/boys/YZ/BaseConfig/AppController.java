@@ -1,8 +1,12 @@
 package com.ourrealm.boys.YZ.BaseConfig;
 
 
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +16,12 @@ import java.util.Map;
  * 微信端工具controlelr
  */
 public class AppController {
+
+    /**
+     * 得到request对象
+     */
+    @Autowired
+    protected HttpServletRequest request;
 
     //获取得到微信端传递过来的参数
     public static String getJson(HttpServletRequest request) throws Exception{
@@ -87,6 +97,73 @@ public class AppController {
         return map;
     }
 
+
+
+    //******************************************************************
+    /**
+     *第二种返回格式积累
+     */
+    /**
+     * @param requestCode
+     * @param msg
+     * @param data
+     * @return Map<String,Object>
+     * @throws
+     * @Description:构建统一格式返回对象
+     * @date 2016年9月2日
+     * @author zhuliyun
+     */
+
+    /**
+     * 获取得到微信端传递过来的参数方法二
+     * @return
+     * @throws Exception
+     */
+    public JSONObject getJsonRequest() {
+        JSONObject result = null;
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader reader = request.getReader();) {
+            char[] buff = new char[1024];
+            int len;
+            while ((len = reader.read(buff)) != -1) {
+                sb.append(buff, 0, len);
+            }
+            result = JSONObject.parseObject(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("=======getJson==========\n" + sb.toString() + "\n=======getJson==========");
+        return result;
+    }
+
+
+    public Map<String, Object> toResponsObject(int requestCode, String msg, Object data) {
+        Map<String, Object> obj = new HashMap<String, Object>();
+        obj.put("errno", requestCode);
+        obj.put("errmsg", msg);
+        if (data != null)
+            obj.put("data", data);
+        return obj;
+    }
+
+    public Map<String, Object> toResponsSuccess(Object data) {
+        Map<String, Object> rp = toResponsObject(0, "执行成功", data);
+        return rp;
+    }
+
+    public Map<String, Object> toResponsMsgSuccess(String msg) {
+        return toResponsObject(0, msg, "");
+    }
+
+    public Map<String, Object> toResponsSuccessForSelect(Object data) {
+        Map<String, Object> result = new HashMap<>(2);
+        result.put("list", data);
+        return toResponsObject(0, "执行成功", result);
+    }
+
+    public Map<String, Object> toResponsFail(String msg) {
+        return toResponsObject(1, msg, null);
+    }
 
 
 }

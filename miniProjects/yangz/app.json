@@ -1,0 +1,37 @@
+{
+  "pages": [
+    
+    "pages/index/index",
+   "pages/me/me",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "YangZ",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#32CD99",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/icon/shouye1.png",
+        "selectedIconPath": "/images/icon/shouye2.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "/images/icon/me1.png",
+        "selectedIconPath": "/images/icon/me2.png"
+      }
+     
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

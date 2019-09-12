@@ -1,0 +1,22 @@
+<!-- 弹框页面，程序可以调用wx.login方法获取用户的基本信息，但是无法获取更隐私的信息，比如openid,需要先授权，获取到code值，再传递到后台，通过java调用
+微信的接口，code和access_token来获取openid等相关隐私信息 -->
+<view class="page">
+
+  <view class="hd">
+    <image class="logo" src="../../../images/img/首页.jpg"></image>
+    <view class="title"> 羊毛小程序欢迎你！！！</view>
+  </view>
+
+<view class="bd">
+  <view class="top_line"></view>
+  <text class="m_name">羊毛小程序想要获取你的一下权限</text>
+  <text class="s_name">. 获取你的公开信息（昵称，头像等）</text>
+</view>
+
+<view class="btn spacing">
+  <!-- 需要使用button按钮来获取用的的基本信息，以及code -->
+  <button wx:if="{{canIUse}}" open-type="getUserInfo" class="weui_btn weui_btn_primary)"
+  bindgetuserinfo="bindGetUserInfo">授权登录</button>
+</view>
+
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "meHeader":"/components/meHeader/meHeader"
+  },
+  "navigationBarTitleText": "个人中心"
+}

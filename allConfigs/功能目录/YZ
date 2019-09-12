@@ -1,2 +1,6 @@
 杨曾功能目录：
+1.
     YZ/Controllers/AppControllers:描述对接app端图片上传接口格式以及数据对象交互格式
+2.
+    YZ/Controllers/WechatWorkControllers:企业微信相关功能包括（企业微信获取用户信息，消息推送用户
+3.

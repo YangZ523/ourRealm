@@ -1,0 +1,9 @@
+<!--components/meHeader/meHeader.wxml-->
+
+ <!-- 头部卡 -->
+  <view class='me-bg'>
+  <view class='ka'>
+  </view>
+  </view>
+
+  <view class='kong'></view>

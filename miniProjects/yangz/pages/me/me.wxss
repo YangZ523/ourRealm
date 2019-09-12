@@ -1,0 +1,8 @@
+/* pages/me/me.wxss  引入外部wxss文件 */
+@import "../../wxssS/weui.min.wxss";
+.tou{
+  width: 40px;
+  height: 40px;
+  margin-top: 3px;
+  border-radius: 50%;
+}

@@ -4,16 +4,53 @@ Navicat MySQL Data Transfer
 Source Server         : yangz
 Source Server Version : 50559
 Source Host           : localhost:3306
-Source Database       : yangz
+Source Database       : ourrealm
 
 Target Server Type    : MYSQL
 Target Server Version : 50559
 File Encoding         : 65001
 
-Date: 2019-08-28 11:53:27
+Date: 2019-09-12 14:36:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `mini_token`
+-- ----------------------------
+DROP TABLE IF EXISTS `mini_token`;
+CREATE TABLE `mini_token` (
+  `id` int(64) NOT NULL,
+  `user_id` int(64) DEFAULT NULL,
+  `user_token` varchar(255) DEFAULT NULL,
+  `expire_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mini_token
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `mini_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `mini_user`;
+CREATE TABLE `mini_user` (
+  `id` int(64) NOT NULL COMMENT '用户id',
+  `user_nickName` varchar(224) DEFAULT NULL COMMENT '昵称',
+  `user_openId` varchar(224) DEFAULT NULL COMMENT 'OPENID',
+  `user_sex` varchar(64) DEFAULT NULL COMMENT '性别',
+  `user_img` varchar(224) DEFAULT NULL COMMENT '头像地址',
+  `user_phone` varchar(224) DEFAULT NULL COMMENT '手机号',
+  `user_adress` varchar(224) DEFAULT NULL COMMENT '微信地址',
+  `user_age` varchar(224) DEFAULT NULL COMMENT '年龄',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of mini_user
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `tb_brand`
@@ -4135,9 +4172,29 @@ CREATE TABLE `user` (
   `user_city` varchar(64) DEFAULT NULL COMMENT '用户城市',
   `user_province` varchar(64) DEFAULT NULL COMMENT '用户省市',
   `user_weixin` varchar(64) DEFAULT NULL COMMENT '微信账号',
+  `user_openid` varchar(64) DEFAULT NULL COMMENT '微信openid',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `wx_token`
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_token`;
+CREATE TABLE `wx_token` (
+  `id` varchar(64) NOT NULL,
+  `wx_appId` varchar(225) DEFAULT NULL COMMENT '微信端的appId',
+  `wx_token` varchar(225) DEFAULT NULL COMMENT 'access_token接口凭证',
+  `wx_Type` char(1) DEFAULT NULL COMMENT '微信类型（1微信公众号，2微信小程序，3企业微信）',
+  `wx_expire` datetime DEFAULT NULL COMMENT '过期时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of wx_token
+-- ----------------------------
+INSERT INTO `wx_token` VALUES ('23ce7bcdd6c64816a6b8095c9ea4046e', 'sdf454df58645df6sd54f25d', 'sdfds5854s68d4f554s5df2', '3', '2019-09-02 08:26:47');
+INSERT INTO `wx_token` VALUES ('65ac894032e94282bd227f461f31fa02', 'sdf454df58645df6sd54f25d', 'sdfds5854s68d4f554s5df2', '3', '2019-09-02 08:26:19');

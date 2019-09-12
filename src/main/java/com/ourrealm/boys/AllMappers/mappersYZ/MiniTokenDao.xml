@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ourrealm.boys.YZ.Daos.MiniTokenDao">
+
+    <resultMap id="MiniToken" type="com.ourrealm.boys.YZ.Models.MiniToken">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_token" jdbcType="VARCHAR" property="userToken"/>
+        <result column="expire_time" jdbcType="DATE" property="expireTime"/>
+        <result column="update_time" jdbcType="DATE" property="updateTime"/>
+    </resultMap>
+
+
+	<select id="getByUserId" resultMap="MiniToken">
+		select * from mini_token a
+		<where>
+			1=1
+			<if test="id != null and id != ''">
+				AND a.user_id = #{id}
+			</if>
+		</where>
+	</select>
+
+    <insert id="insert" parameterType="com.ourrealm.boys.YZ.Models.MiniToken">
+		INSERT INTO mini_token(
+			id,
+			user_id,
+			user_token,
+			expire_time,
+			update_time
+		) VALUES (
+			#{id},
+			#{userId},
+			#{userToken},
+			#{expireTime},
+			#{updateTime}
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE mini_token SET
+			user_id = #{userId},
+			user_token = #{userToken},
+			expire_time = #{expireTime},
+			update_time = #{updateTime}
+		WHERE id = #{id}
+	</update>
+
+    <update id="delete">
+		DELETE FROM mini_token
+		WHERE id = #{id}
+	</update>
+
+</mapper>

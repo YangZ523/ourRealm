@@ -1,0 +1,15 @@
+<!--pages/index/index.wxml-->
+<!-- 渐变图片 -->
+<view class="aa" style="opacity:{{opacity}};">
+  <image src="../../images/img/首页.jpg"></image>
+</view>
+
+<view class="container" style='opacity: {{1-opacity}};'>
+
+<!-- 关联小程序，只有在小程序的公众平台打开关联的按钮，才能显示 -->
+<!-- <view style="width:100%;position:relative;height:165rpx;background:gray;">
+  <official-account></official-account>
+</view> -->
+
+</view>
+

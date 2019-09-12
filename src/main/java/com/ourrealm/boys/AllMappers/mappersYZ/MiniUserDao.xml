@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ourrealm.boys.YZ.Daos.MiniUserDao">
+
+    <resultMap id="MiniUser" type="com.ourrealm.boys.YZ.Models.MiniUser">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_nickname" jdbcType="VARCHAR" property="userNickname"/>
+        <result column="user_img" jdbcType="VARCHAR" property="userImg"/>
+        <result column="user_openId" jdbcType="CHAR" property="userOpenid"/>
+        <result column="user_sex" jdbcType="INTEGER" property="userSex"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="user_age" jdbcType="VARCHAR" property="userAge"/>
+        <result column="user_adress" jdbcType="VARCHAR" property="userAdress"/>
+    </resultMap>
+
+	<!--根据openid查询user对象-->
+	<select id="findByOpenid" resultMap="MiniUser">
+		SELECT * FROM mini_user a
+		<where>
+			1=1
+			<if test="openid != null and openid != ''">
+				AND a.user_openId = #{openid}
+			</if>
+		</where>
+	</select>
+
+    <insert id="insert" parameterType="com.ourrealm.boys.YZ.Models.MiniUser">
+		INSERT INTO mini_user(
+			id,
+			user_nickname,
+			user_img,
+			user_openId,
+			user_phone,
+			user_sex,
+			user_age,
+			user_adress
+		) VALUES (
+			#{id},
+			#{userNickname},
+			#{userImg},
+			#{userOpenid},
+			#{userPhone},
+			#{userSex},
+			#{userAge},
+			#{userAdress}
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE mini_user SET
+			user_nickname = #{userNickname},
+			user_openId = #{userOpenid},
+			user_img = #{userImg},
+			user_phone = #{userPhone},
+			user_sex = #{userSex},
+			user_age = #{userAge},
+			user_adress =#{userAdress}
+		WHERE id = #{id}
+	</update>
+
+    <update id="delete">
+		DELETE FROM mini_user
+		WHERE id = #{id}
+	</update>
+
+</mapper>

@@ -1,0 +1,24 @@
+<!--templates/login.wxml-->
+
+<template name="phone">
+  <view class="zan-popup {{ showPhonePopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask"></view>
+    <view class="zan-popup__container popup-example--center" style='width:80%;border-radius: 20rpx;'>
+      <view wx:if="{{canIUse}}">
+        <view style='  display: flex;flex-direction: column;align-items: center;margin-top:20rpx'>
+          <image style='width: 100rpx;height: 100rpx;margin: 20rpx;border-radius: 50%;' src="../../images/img/首页.jpg" background-size="cover"></image>
+          <!-- <open-data type="userAvatarUrl"></open-data> -->
+        </view>
+        <view class='zan-font-14 zan-c-gray-dark' style='text-align:center;margin-top:10rpx'>
+          请求获取手机号</view>
+        <view class="zan-btns">
+          <button open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber" class="zan-btn zan-btn--primary">手机号授权</button>
+          <!-- <button bindtap='navigateBack' class="zan-btn">返回首页</button> -->
+        </view>
+      </view>
+
+      <view wx:else class='zan-font-16 zan-c-red' style='text-align:center;margin-top:50rpx'>
+        您的微信版本过低，请升级后再次体验</view>
+    </view>
+  </view>
+</template>

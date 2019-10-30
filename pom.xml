@@ -22,7 +22,7 @@
     <properties>
         <java.version>1.8</java.version>
         <!--声明一下fastJson jar包的版本号-->
-        <fastjson.version>1.1.40</fastjson.version>
+        <fastjson.version>1.2.25</fastjson.version>
         <guava.version>17.0</guava.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <commons-codec.version>1.9</commons-codec.version>
